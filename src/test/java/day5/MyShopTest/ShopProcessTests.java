@@ -1,35 +1,42 @@
 package day5.MyShopTest;
 
 import day4.testBase;
-import day5.MyStore.HomepagePO;
-import day5.MyStore.MenuPO;
-import day5.MyStore.QuickViewPO;
+import day5.MyStore.*;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class ShopProcessTests extends testBase {
 
-        @Test
-        public void shouldCorrectlyAddMultipleItemsToCartTest(){
-            // 3 razy wylosuj produkt i ilosc -> dodaj do koszyka
-            // przejdz do koszyka
-            // sprawdz wartosc i prawislowos (istnienie) dobrych obiektow w koszyku
+    @Test
+    public void shouldCorrectlyAddMultipleItemsToCartTest(){
+        // 3 razy wylosuj produkt i ilosc -> dodaj do koszyka
+        // przejdz do koszyka
+        // sprawdz wartosc i prawidlowosc sumy itemow w koszyku
+        HomepagePO homepagePO = new HomepagePO(driver);
+        MenuPO menuPO = new MenuPO(driver);
+        ShoppingCartPO shoppingCartPO = new ShoppingCartPO(driver);
+        QuickViewPO quickViewPO = new QuickViewPO(driver);
+        ProductAddedToCartPO productAddedToCartPO = new ProductAddedToCartPO(driver);
+        homepagePO.openMe();
 
-            HomepagePO homepagePO = new HomepagePO(driver);
-            MenuPO menuPO= new MenuPO(driver);
-            homepagePO.openMe();
+        //podpowiedz:
+        int totalQuantity = 0;
+        double value = 0;
 
-            int totalQuantity=0;
-            //double price;
-            double Value =0;
-
-                    for(int i=0;i<3;i++){
-                        for(int j=0;j<10;j++){
-                            System.out.println();
-                        }
-                    }
-                    menuPO.openCart();
-
+        for (int i=0;i<3;i++){
+            int numberOfRandomMiniature = getRandomNumber(homepagePO.miniaturesNumber() - 1);
+            double price = homepagePO.getPriceOfNthMiniature(numberOfRandomMiniature);
+            int quantity = getRandomNumber(10);
+            value += price*quantity;
+            totalQuantity += quantity;
+            homepagePO.openQuickViewOfNthMiniature(numberOfRandomMiniature);
+            quickViewPO.setQuantity(quantity);
+            quickViewPO.addToCart();
+            productAddedToCartPO.clickContinueShoping();
         }
-Assert.assertEquals(totalQuantity, shoppingCart)
+        menuPO.openCart();
+
+        Assert.assertEquals(totalQuantity,shoppingCartPO.getTotalNumberofItemsInTheCart());
+        Assert.assertEquals(value,shoppingCartPO.getSubtotal(),0.001);
+    }
 }

@@ -53,4 +53,3 @@ public class ProductMiniaturePO {
         this.driver = driver;
     }
 }
-}

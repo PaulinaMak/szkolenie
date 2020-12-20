@@ -26,6 +26,28 @@ class FirstPOTests extends testBase {
         //then
         Assert.assertEquals(formPO.getValidatorMessageText(),"Form send with success");
     }
+@Test
+public void alternativeTest(){
+        FormAlternativePO formAlternativePO = new FormAlternativePO(driver);
+        formAlternativePO.openMe();
+
+
+    /*    formAlternativePO
+                .fillName("Bogdan", "Wiadro");
+               .fillEmail();
+                .selectMale();
+                .fillAge(45);
+                .selectRandomExperience();
+                .selectManualTester();
+                .selectRandomContinent();
+                .selectRandomCommand();
+                .fillFileInput();
+                .fillAdditionalInformation("Tralalala");
+                .submit();
+                Assert.assertEquals(formAlternativePO.getValidatorMessageText("Form send with success"));
+ */
+}
+
 
     @Test
     public void progressBarTest(){

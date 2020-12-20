@@ -3,7 +3,7 @@ package day5.MyShopTest;
 import day4.testBase;
 import day5.MyStore.CreateAccountPO;
 import day5.MyStore.HomepagePO;
-import day5.MyStore.LoginPO;
+import day5.MyStore.LogInPO;
 import day5.MyStore.MenuPO;
 import org.testng.Assert;
 import org.testng.annotations.Test;
@@ -21,7 +21,7 @@ public class UserCreation extends testBase {
       MenuPO menuPO = new MenuPO(driver);
       //when
       menuPO.clickSignInOutButton();
-      LoginPO loginPO = new LoginPO(driver);
+      LogInPO loginPO = new LogInPO(driver);
       loginPO.clickCreateAccountLink();
       CreateAccountPO createAccountPO = new CreateAccountPO(driver);
       createAccountPO.fillFormAndSubmit(true,
@@ -43,7 +43,7 @@ public class UserCreation extends testBase {
       String email = "test@test.com";
       HomepagePO homepagePO = new HomepagePO(driver);
       MenuPO menuPO = new MenuPO(driver);
-      LoginPO loginPO = new LoginPO(driver);
+      LogInPO loginPO = new LogInPO(driver);
       CreateAccountPO createAccountPO = new CreateAccountPO(driver);
 
 
@@ -61,3 +61,5 @@ public class UserCreation extends testBase {
       //then
       Assert.assertTrue(createAccountPO.getAlertText().contains("already used"));
    }
+
+}
