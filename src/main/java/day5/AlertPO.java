@@ -18,8 +18,10 @@ public class AlertPO extends BasePO {
     @FindBy(id="delayed-alert-label")
     private WebElement delayedAlertLabel;
 
-    public void clickDelayedAlert(){
+    public AlertPO clickDelayedAlert(){
+
         delayedAlert.click();
+        return this;
     }
 
     public String getDelayedalertLabelText(){
@@ -27,10 +29,14 @@ public class AlertPO extends BasePO {
 
     }
 
-    public void waitForAlertAndAccept(){
+    public AlertPO waitForAlertAndAccept(){
         wait.until(ExpectedConditions.alertIsPresent());
         driver.switchTo().alert().accept();
+        return this;
     }
+
+
+
 
 
     public AlertPO(WebDriver driver) {

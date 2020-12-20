@@ -33,17 +33,17 @@ public void alternativeTest(){
 
 
     /*    formAlternativePO
-                .fillName("Bogdan", "Wiadro");
-               .fillEmail();
-                .selectMale();
-                .fillAge(45);
-                .selectRandomExperience();
-                .selectManualTester();
-                .selectRandomContinent();
-                .selectRandomCommand();
-                .fillFileInput();
-                .fillAdditionalInformation("Tralalala");
-                .submit();
+                .fillName("Bogdan", "Wiadro")
+               .fillEmail()
+                .selectMale()
+                .fillAge(45)
+                .selectRandomExperience()
+                .selectManualTester()
+                .selectRandomContinent()
+                .selectRandomCommand()
+                .fillFileInput()
+                .fillAdditionalInformation("Tralalala")
+                .submit()
                 Assert.assertEquals(formAlternativePO.getValidatorMessageText("Form send with success"));
  */
 }
@@ -60,8 +60,12 @@ public void alternativeTest(){
     public void testDelayedAlert(){
         AlertPO alertPO = new AlertPO(driver);
         alertPO.openMe();
-        alertPO.clickDelayedAlert();
-        alertPO.waitForAlertAndAccept();
-        Assert.assertEquals(alertPO.getDelayedalertLabelText(),"OK button pressed");
+
+        //String actual=alertPO;
+       alertPO
+        .clickDelayedAlert()
+        .waitForAlertAndAccept();
+
+       Assert.assertEquals(alertPO.getDelayedalertLabelText(),"OK button pressed");
     }
 }
